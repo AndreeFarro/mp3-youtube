@@ -13,14 +13,14 @@ export const Display = () => {
    useEffect(()=>{
       socket.on('data', (data) => {
          if(data.state){
-            console.log(data)
+            //console.log(data)
             setMusic(data.music)
          }
       });
       
       socket.on('download.process', (data)=>{
          if(data.state){
-            console.log(data)
+            //console.log(data)
             setProgress(data)
             const down = document.getElementById("down")
             if (down != null) {
@@ -33,7 +33,6 @@ export const Display = () => {
       socket.on('download', (data)=>{
          window.open(data.data)
          setProgress({})
-         //socket.emit("delete",{data: data.data})
       })
 
       return ()=>{

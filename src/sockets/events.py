@@ -18,11 +18,6 @@ def connect(sid, environ):
 @sio.event
 def disconnect(sid):
     print(sid, 'disconnected')
-    
-@sio.event
-def suma(sid):
-    sio.emit("sends",{'a':"Hey soy el servidor"}, to=sid)
-
 
 @sio.event
 def down(sid,data):
@@ -64,7 +59,7 @@ def down(sid,data):
         sio.emit("download", res , to=sid) 
         
         path = "./temp/"+DIR_HASH+".mp3"
-        time.sleep(20)
+        time.sleep(120)
         if os.path.exists(path):
             file = open(path,"r")
             if file.closed == False:
@@ -85,3 +80,5 @@ def info(sid, data):
         sio.emit("data",{ "state" : False, 'music' : "not Found"}, to=sid)
     else:
         sio.emit("data",{ "state" : True , 'music' : info_dict }, to=sid)
+        
+

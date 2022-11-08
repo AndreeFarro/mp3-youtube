@@ -47,3 +47,4 @@ htmlcov
 node_modules
 temp
 *.bat
+.env
