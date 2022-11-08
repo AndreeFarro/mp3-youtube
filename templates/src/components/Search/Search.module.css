@@ -1,4 +1,35 @@
+.container {
+   
+   border: 1px solid #dadce0;
+   padding: 0 1.2rem;
+   border-radius: 3rem;
+   width: 33rem;
+   height: 2.9rem;
+   display: flex;
+   gap: 1rem;
+   justify-content: space-between;
+   align-items: center;
+   overflow: hidden;
+   
+}
+
 .search {
-   background: red;
-   color: blue;
+   font-size: 1rem;
+   width: 100%;
+   color: #202124;
+   height: 100%;
+   border: none;
+   outline: red;
+}
+
+.btn{
+   height: 100%;
+   border: none;
+   background: #fff;
+   cursor: pointer;
+}
+.icon_lens{
+   color: #757575;
+   margin-top: .2rem;
+   font-size: 1.6rem;
 }

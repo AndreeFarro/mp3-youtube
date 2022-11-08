@@ -1,8 +1,8 @@
 from flask import Response, jsonify
 
-def response(message: str, data, status: int = 200):
+def response(message: str, data, state: bool = True):
     return {    
-        "status": status,
+        "state": state,
         "message": message,
         "data": data
     }

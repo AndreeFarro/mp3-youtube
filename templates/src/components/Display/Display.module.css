@@ -1,0 +1,131 @@
+:root{
+   --ball-disk: 2rem;
+   --disk: 10rem;
+}
+html{
+   background-color: #f1f8fd;
+}
+.container{
+   margin: 5rem;
+   padding: 2rem 0rem;
+   width: 25rem;
+   font-family: 'calibri';
+   background-color: #fff;
+   box-shadow: 0px 0px 20px 0 rgb(0 0 0 / 10%);
+   border-radius: 2rem;
+}
+
+.information{
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   padding: 1rem;
+}
+.channel{
+   font-size: 1.3rem;
+   font-weight: 500;
+   margin: 0;
+   margin-bottom: .2rem;
+   color: #202124;
+}
+
+.title{
+   font-size: .9rem;
+   font-weight: 500;
+   color: #8e93a2;
+   margin: 0;
+}
+.record{
+   padding: 2rem 0;
+   position: relative;
+}
+
+.disk{
+   margin: 0 auto;
+   position: relative;
+   width: var(--disk);
+   height: var(--disk);
+   border-radius: 50%;
+   overflow: hidden;
+   box-shadow: 20px 20px 20px rgb(0 0 0 / 7%), -20px -20px 20px rgb(255 255 255 / 70%), 6px 6px 6px rgb(0 0 0 / 9%), -6px -6px 6px rgb(255 255 255 / 90%);
+   border: 3.2px solid #f1f8fd;
+
+}
+
+.disk::after {
+   content: '';
+   width: var(--ball-disk);
+   height: var(--ball-disk);
+   border-radius: 50%;
+   background-color: #fff;
+   display: block;
+   position: absolute;
+   box-shadow: inset 0px 0px 8px 1px rgba(89, 87, 87, 0.5);
+   top: calc(50% - var(--ball-disk) / 2);
+   left: calc(50% - var(--ball-disk) / 2);
+}
+
+
+.disk img{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.player{
+   margin: 0 2rem;
+
+}
+
+.download{
+   display: flex;
+   justify-content: right;
+   width: 100%;
+}
+
+.btn{
+   border: none;
+   border-radius: 1rem;
+   background: none;
+   height: 3rem;
+   color: rgb(47, 234, 156);
+   font-weight: bold;
+   display: flex;
+   align-items: center;
+   gap: 2px;
+   margin: 1rem;
+   padding: 1rem 2rem;
+   cursor: pointer;
+}
+
+
+.ico_download{
+   font-size: 1.8rem;
+}
+
+
+
+
+.progress {
+   height: 35px;
+   width: 100%;
+   border: 1px solid #428bca;
+   border-radius: 5px;
+   background-color: #e6f3fa;
+   margin-bottom: 15px;
+}
+
+.progress_bar {
+   height: 100%;
+   background: #428bca;
+   display: flex;
+   align-items: center;
+   transition: width 0.25s;
+   border-radius: 5px;
+}
+
+.progress_bar_text {
+   margin-left: 10px;
+   font-weight: bold;
+   color: #cce7f5;
+}

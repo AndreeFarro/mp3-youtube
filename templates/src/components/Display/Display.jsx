@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { socket } from '../../socket/config';
 
-export const Display = () => {
+import "./Overwrite.scss";
+import styles from "./Display.module.css";
+import {AiOutlineDownload} from "react-icons/ai";
+import AudioPlayer from 'react-h5-audio-player';
 
-   const [music, setMusic] = useState({})
+export const Display = () => {
+   const [dict_music, setMusic] = useState({})
+   const [progress, setProgress] = useState({})
+
    useEffect(()=>{
       socket.on('data', (data) => {
          if(data.state){
@@ -11,31 +17,74 @@ export const Display = () => {
             setMusic(data.music)
          }
       });
+      
+      socket.on('download.process', (data)=>{
+         if(data.state){
+            console.log(data)
+            setProgress(data)
+            document.getElementById("down").style.width = data.data.percent
+
+         }
+      })
+
+      socket.on('download', (data)=>{
+         window.open(data.data)
+         socket.emit("delete",{data: data.data})
+      })
 
       return ()=>{
          socket.off('data')
+         socket.off('download.process')
+         socket.off('download')
       }
+
    })
-   
+
+   const download_Music = () =>{
+      socket.emit("down",{ url:dict_music.url })
+   }
+
+
+
    return (
-      <div>
-         <div className="information">
-            <h2 className="channel">{music.channel}</h2>
-            <h3 className="title">{music.title}</h3>
-         </div>
-         <div className="disk">
-            <img src={music.thumbnail} alt="" width="100px"/>
-         </div>
-         <div className="player">
-
+      <div className={styles.container}>
          {
-            music?.url &&( 
-               <audio controls name="media" src={music.url} type={"audio/mp4"} />
-            )
-         }
-         
+         dict_music?.url &&( 
+         <>
+            <div className={styles.information}>
+               <h2 className={styles.channel}>{dict_music.channel}</h2>
+               <h3 className={styles.title}>{dict_music.title}</h3>
+            </div>
+            <div className={styles.record}>
+               <div className={styles.disk}>
+                  <img src={dict_music.thumbnail} alt="" width="100px"/>
+               </div>            
+            </div>
+            <div className={styles.player}>
+                  <AudioPlayer src={dict_music.url} />
+            </div>
+            <div className={styles.download}>
+               <button className={styles.btn} onClick={download_Music}>
+                  <div>Descargar</div>   
+                  <AiOutlineDownload className={styles.ico_download}/>
+               </button>
 
-         </div>
+               {
+                  progress?.data &&( 
+                  <div className={styles.progress}>
+                     <div className={styles.progress_bar} id="down">
+                        <span className={styles.progress_bar_text}>{progress.data.percent}</span>
+                     </div>
+                  </div>      
+                  )
+               }
+
+
+            </div>
+
+         </>
+         )
+      }
       </div>
    )
 }

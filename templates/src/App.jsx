@@ -20,14 +20,9 @@ function App() {
     console.log('disconnected');
   });
 
-  socket.on('download.process', (data)=>{
-    console.log(data.data)
-  })
+
   
-  socket.on('download', (data)=>{
-    window.open(data.data)
-    socket.emit("delete",{data: data.data})
-  })
+  
 
 
   return (

@@ -9,7 +9,7 @@ def progress(down_file ,sio, sid):
         PATH_URL_FILE = "http://127.0.0.1:5000/d/" + clean(down_file.get('filename'))+".mp3"
         
     else:        
-        res = response("downloading...", data_wait(down_file), STATUS_PROGRESS)
+        res = response("downloading...", data_wait(down_file))
         print(down_file['_percent_str'])
         
         sio.emit("download.process", res , to=sid)
