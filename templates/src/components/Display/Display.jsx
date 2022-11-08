@@ -22,14 +22,18 @@ export const Display = () => {
          if(data.state){
             console.log(data)
             setProgress(data)
-            document.getElementById("down").style.width = data.data.percent
-
+            const down = document.getElementById("down")
+            if (down != null) {
+               document.getElementById("down").style.width = data.data.percent
+            }
+            
          }
       })
 
       socket.on('download', (data)=>{
          window.open(data.data)
-         socket.emit("delete",{data: data.data})
+         setProgress({})
+         //socket.emit("delete",{data: data.data})
       })
 
       return ()=>{
@@ -57,31 +61,30 @@ export const Display = () => {
             </div>
             <div className={styles.record}>
                <div className={styles.disk}>
-                  <img src={dict_music.thumbnail} alt="" width="100px"/>
+                  <img src={dict_music.thumbnail}/>
                </div>            
             </div>
             <div className={styles.player}>
                   <AudioPlayer src={dict_music.url} />
             </div>
             <div className={styles.download}>
-               <button className={styles.btn} onClick={download_Music}>
-                  <div>Descargar</div>   
-                  <AiOutlineDownload className={styles.ico_download}/>
-               </button>
-
+               
                {
-                  progress?.data &&( 
-                  <div className={styles.progress}>
-                     <div className={styles.progress_bar} id="down">
-                        <span className={styles.progress_bar_text}>{progress.data.percent}</span>
-                     </div>
-                  </div>      
-                  )
+                  progress?.data? ( 
+                     <div className={styles.progress}>
+                        <div className={styles.progress_bar} id="down">
+                           <span className={styles.progress_bar_text}>{progress.data.percent}</span>
+                        </div>
+                     </div>      
+                     ) :
+                     (
+                     <button className={styles.btn} onClick={download_Music}>
+                        <div>Descargar</div>   
+                        <AiOutlineDownload className={styles.ico_download}/>
+                     </button>
+                     )
                }
-
-
             </div>
-
          </>
          )
       }

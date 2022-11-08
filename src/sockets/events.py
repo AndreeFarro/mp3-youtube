@@ -62,6 +62,14 @@ def down(sid,data):
     else:      
         res = response("full download.", "http://127.0.0.1:5000/d/"+DIR_HASH+".mp3")       
         sio.emit("download", res , to=sid) 
+        
+        path = "./temp/"+DIR_HASH+".mp3"
+        time.sleep(20)
+        if os.path.exists(path):
+            file = open(path,"r")
+            if file.closed == False:
+                file.close()
+            os.remove(path)
 
 
 @sio.event
@@ -77,24 +85,3 @@ def info(sid, data):
         sio.emit("data",{ "state" : False, 'music' : "not Found"}, to=sid)
     else:
         sio.emit("data",{ "state" : True , 'music' : info_dict }, to=sid)
-        
-
-
-@sio.event
-def delete(sid, data):
-    path = "./temp"+data.get("data").split("d")[1]
-    
-    #time.sleep(240)
-    time.sleep(20)
-    if os.path.exists(path):
-        file = open(path,"r")
-        if file.closed == False:
-            file.close()
-        os.remove(path)
-
-def is_supported(url):
-    extractors = youtube_dl.extractor.gen_extractors()
-    for e in extractors:
-        if e.suitable(url) and e.IE_NAME != 'generic':
-            return True
-    return False

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import { socket } from './socket/config'
+import './App.css'
 
 import { Search } from './components/Search/Search'
 import { Display } from './components/Display/Display'
@@ -9,7 +10,6 @@ import { Display } from './components/Display/Display'
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
 
   socket.on('connect', () => {
@@ -19,10 +19,6 @@ function App() {
   socket.on('disconnect', () => {
     console.log('disconnected');
   });
-
-
-  
-  
 
 
   return (

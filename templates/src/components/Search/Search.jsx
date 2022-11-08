@@ -11,7 +11,6 @@ export const Search = () => {
   const get_data_Music = () =>{
     let url_music = link_music.current.value
     socket.emit("info",{ url:url_music })
-    //socket.emit("down",{ url:url_music })
   }
 
   return (

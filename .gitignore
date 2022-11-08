@@ -45,5 +45,5 @@ htmlcov
 *.swp
 
 node_modules
-
+temp
 *.bat
