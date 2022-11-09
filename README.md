@@ -1,4 +1,4 @@
-# mp3-youtube
+# 〽 ıllılı.ı mp3-youtube ıllılı.ı
 Es una aplicacion web que permite la descarga de musica en formato `mp3` en la mejor calidad posible usando la libreria `youtube-dl` y con ayuda de Sockets para el manejo de procesos en paralelo.
 
 <img src="https://github.com/AndreeFarro/mp3-youtube/blob/main/img/test.png" />
